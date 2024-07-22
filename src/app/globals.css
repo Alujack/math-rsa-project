@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* background image */
+.image-bg{
+    background-image: url("/image/video-bg.png");
+    background-color: #161637;
+    color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Custom class for upper roman list */
+.list-upper-roman {
+    list-style-type: upper-roman;
+  }
+  
