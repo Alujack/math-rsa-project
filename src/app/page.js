@@ -24,10 +24,10 @@ export default function Home() {
           </h1>
           <ol className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-10 pb-8">
             <li>Phan Sovannarith</li>
-            <li>Yourn Yan</li>
-            <li>Yong Sokheag</li>
-            <li>Ra Phearom</li>
-            <li>Van Phidinan</li>
+            <li>YOEURN YAN</li>
+            <li>YOUNG SOKHEANG</li>
+            <li>RA PHEAROM</li>
+            <li>RAN FIDINAN</li>
           </ol>
         </div>
       </div>
