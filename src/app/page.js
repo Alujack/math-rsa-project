@@ -15,8 +15,8 @@ export default function Home() {
           Below are the features for <mark>cryptography</mark>:
         </p>
         <ol className="pl-8 list-upper-roman grid gap-3 text-base md:text-lg lg:text-xl">
-          <li><Link href="/encrype-decrypt">Caesar Cipher</Link></li>
-          <li><Link href="#">RSA</Link></li>
+          <li><Link href="/caesarCiper">Caesar Cipher</Link></li>
+          <li><Link href="/encrype-decrypt">RSA</Link></li>
         </ol>
         <div className="w-full flex flex-col justify-center text-base md:text-lg lg:text-xl text-white mt-16 lg:mt-64">
           <h1 className="text-center py-8">
