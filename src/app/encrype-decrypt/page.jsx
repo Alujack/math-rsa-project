@@ -11,9 +11,6 @@ export default function HomePage() {
   const [showEncrypted, setShowEncrypted] = useState(true);
 
   const rsa = new RSA(61, 53);
-  const p = rsa.p;
-  const q = rsa.q;
-  const e = rsa.e;
 
   const handleEncrypt = () => {
     playSound();
@@ -87,15 +84,6 @@ export default function HomePage() {
           </div>
         )}
       </div>
-
-      <footer className="mt-8 text-center text-xl">
-        <p>RSA Encryption and Decryption : Group 05</p>
-        <p>YOEURN YAN</p>
-        <p>PHAN SOVANARITH</p>
-        <p>RAN FIDINAN</p>
-        <p>YOUNG SOKHEANG</p>
-        <p>RA PHEAROM</p>
-      </footer>
     </div>
   );
 }
