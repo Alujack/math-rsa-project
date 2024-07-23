@@ -34,28 +34,28 @@ export default function HomePage() {
 
   return (
     <div className="w-full flex flex-col justify-between items-center pt-10">
-      <input
+     <input
         type="text"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Your Message"
-        className="size-[2.5vh] p-4 w-[55vw] h-[8vh] rounded-full text-black bg-cyan-400 placeholder-black"
+        className="p-4 h-[8vh] rounded-full text-black bg-cyan-400 placeholder-black  w-full sm:w-[77vw] md:w-[60vw] lg:w-[65vw]"
       />
-
-      <div className="flex space-x-4 mt-4">
+      <div className="flex flex-col gap-3 sm:flex-row  mt-4">
         <button
           onClick={handleEncrypt}
-          className="text-white w-[23vw] font-bold py-2 px-14 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+          className="text-white w-full  lg:w-[25vw] font-bold py-2 px-14 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
         >
           Encrypt
         </button>
         <button
           onClick={handleDecrypt}
-          className="text-white w-[23vw] font-bold py-2 px-14 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+          className="text-white w-full lg:w-[25vw] font-bold py-2 px-14 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
         >
           Decrypt
         </button>
       </div>
+
 
       <div className="w-[60vw] p-4 mt-8 text-xl h-auto">
         <p className="mb-3 text-gray-500 dark:text-gray-400 h-auto w-full">
