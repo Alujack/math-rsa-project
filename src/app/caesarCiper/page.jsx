@@ -5,12 +5,13 @@ import CaesarCipher from '@/libs/caesorCiperEncryptDecrypt';
 
 export default function HomePage() {
   const [message, setMessage] = useState('');
+  const [shift, setShift] = useState(3); // Default shift value
   const [encrypted, setEncrypted] = useState('');
   const [decrypted, setDecrypted] = useState('');
   const [showDetails, setShowDetails] = useState(false);
   const [showEncrypted, setShowEncrypted] = useState(true);
 
-  const caesarCipher = new CaesarCipher(3);
+  const caesarCipher = new CaesarCipher(shift);
 
   const handleEncrypt = () => {
     playSound();
@@ -41,6 +42,14 @@ export default function HomePage() {
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Your Message"
         className="w-full max-w-lg p-4 rounded-full text-black bg-cyan-400 placeholder-black"
+      />
+      
+      <input
+        type="number"
+        value={shift}
+        onChange={(e) => setShift(Number(e.target.value))}
+        placeholder="Shift"
+        className="w-full max-w-lg mt-4 p-4 rounded-full text-black bg-cyan-400 placeholder-black"
       />
 
       <div className="flex flex-col sm:flex-row sm:space-x-4 mt-4 w-full max-w-lg">
@@ -79,7 +88,7 @@ export default function HomePage() {
         </button>
         {showDetails && (
           <div className="mt-4">
-            <p className="text-gray-500 dark:text-gray-400">Shift: {caesarCipher.shift}</p>
+            <p className="text-gray-500 dark:text-gray-400">Shift: {shift}</p>
           </div>
         )}
       </div>
