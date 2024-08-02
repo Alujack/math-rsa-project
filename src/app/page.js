@@ -17,6 +17,7 @@ export default function Home() {
         <ol className="pl-8 list-upper-roman grid gap-3 text-base md:text-lg lg:text-xl">
           <li><Link href="/caesarCiper">Caesar Cipher</Link></li>
           <li><Link href="/encrype-decrypt">RSA</Link></li>
+          <li><Link href="/messageRSA">Message RSA</Link></li>
         </ol>
         <div className="w-full flex flex-col justify-center text-base md:text-lg lg:text-xl text-white mt-16 lg:mt-64">
           <h1 className="text-center py-8">

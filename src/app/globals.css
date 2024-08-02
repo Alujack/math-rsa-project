@@ -4,7 +4,7 @@
 
 
 /* background image */
-.image-bg{
+.image-bg {
     background-image: url("/image/video-bg.png");
     background-color: #161637;
     color: white;
@@ -16,5 +16,43 @@
 /* Custom class for upper roman list */
 .list-upper-roman {
     list-style-type: upper-roman;
-  }
-  
+}
+
+/* caesar ciper */
+.banner-cc{
+    background-color: #343f56;
+    height: 100vh;
+}
+
+/* RSA */
+.banner-rsa{
+    background-color: #343f56;
+    height: 100vh;
+}
+
+/* message */
+.banner-message{
+    background-color: #343f56;
+    height: auto;
+}
+
+.container{
+    width: 1200px;
+    margin: auto;
+}
+
+.banner-title{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+}
+
+.banner-message .container-color .banner-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 200px;
+    bottom: 50px;
+}
