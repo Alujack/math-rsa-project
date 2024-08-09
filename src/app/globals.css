@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
 /* background image */
 .image-bg {
     background-image: url("/image/video-bg.png");
@@ -21,7 +23,6 @@
 /* caesar ciper */
 .banner-cc{
     background-color: #343f56;
-    height: 100vh;
 }
 
 /* RSA */

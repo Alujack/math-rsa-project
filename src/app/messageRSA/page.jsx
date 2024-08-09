@@ -46,7 +46,7 @@ export default function HomePage() {
         </button>
         <h1 className="banner-title">Message - RSA</h1>
         <div className="container-color rounded-t-2xl py-2">
-          <div className="flex flex-col h-[700px] rounded-t-xl mx-4 h-auto bg-stone-600 overflow-auto">
+          <div className="flex flex-col rounded-t-xl mx-4 h-auto bg-stone-600 overflow-auto">
             {groupNames.map((name, index) => (
               <div key={index} className="p-2 border m-3 flex justify-between">
                 {name}
