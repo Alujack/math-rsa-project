@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import CaesarCipher from '@/libs/caesorCiperEncryptDecrypt';
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const [message, setMessage] = useState('');
@@ -11,6 +12,7 @@ export default function HomePage() {
   const [decrypted, setDecrypted] = useState('');
   const [showDetails, setShowDetails] = useState(false);
   const [showEncrypted, setShowEncrypted] = useState(true);
+  const router = useRouter();
 
   const caesarCipher = new CaesarCipher(shift);
 
@@ -38,8 +40,8 @@ export default function HomePage() {
   return (
     <div className="banner-cc w-full min-h-screen flex flex-col items-center pt-10 px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 flex justify-start">
-        <button className="p-2 rounded-lg bg-teal-400 text-white">
-          <Link href="../">Back</Link>
+        <button onClick={()=>router.back()} className="p-2 rounded-lg bg-teal-400 text-white">
+          Back
         </button>
       </div>
       <div className="w-full max-w-lg mt-4">
