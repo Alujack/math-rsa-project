@@ -4,7 +4,7 @@ class RSA {
         this.q = BigInt(q);
         this.n = this.p * this.q;
         this.phi = (this.p - 1n) * (this.q - 1n);
-        this.e = 65537n;
+        this.e = 13n;
         this.d = this.modInverse(this.e, this.phi);
     }
     modInverse(e, phi) {
