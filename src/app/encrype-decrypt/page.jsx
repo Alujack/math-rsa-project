@@ -3,6 +3,7 @@
 import { useState } from "react";
 import RSA from "@/libs/rsaEcryptDecript";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const [message, setMessage] = useState("");
@@ -10,6 +11,7 @@ export default function HomePage() {
   const [decrypted, setDecrypted] = useState("");
   const [showDetails, setShowDetails] = useState(false);
   const [showEncrypted, setShowEncrypted] = useState(true);
+  const router = useRouter();
 
   const rsa = new RSA(61, 53);
 
@@ -37,8 +39,8 @@ export default function HomePage() {
   return (
     <div className="banner-rsa min-h-screen bg-gray-100 flex flex-col items-center pt-4">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 flex justify-start">
-        <button className="p-3 rounded-lg p-2 bg-teal-400 text-white">
-          <Link href="../">Back</Link>
+        <button onClick={()=>router.back()} className="p-3 rounded-lg  bg-teal-400 text-white">
+          back
         </button>
       </div>
       <div className="w-11/12 max-w-md mx-auto flex flex-col items-center pt-10">
