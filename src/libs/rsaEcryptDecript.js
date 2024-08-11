@@ -1,12 +1,13 @@
 class RSA {
-    constructor(p, q) {
+    constructor(p, q, e) {
         this.p = BigInt(p);
         this.q = BigInt(q);
         this.n = this.p * this.q;
         this.phi = (this.p - 1n) * (this.q - 1n);
-        this.e = 13n;
+        this.e = BigInt(e);
         this.d = this.modInverse(this.e, this.phi);
     }
+
     modInverse(e, phi) {
         let [a, b, u] = [0n, phi, 1n];
         while (e > 0n) {
@@ -18,22 +19,27 @@ class RSA {
         }
         throw new Error('No modular inverse found');
     }
+
     charToNum(char) {
         return char.charCodeAt(0);
     }
+
     numToChar(num) {
         return String.fromCharCode(num);
     }
+
     encryptChar(char) {
         const num = BigInt(this.charToNum(char));
         const encryptedNum = this.modPow(num, this.e, this.n);
         return encryptedNum.toString().padStart(6, ' ');
     }
+
     decryptChar(encryptedChar) {
         const num = BigInt(encryptedChar.trim());
         const decryptedNum = this.modPow(num, this.d, this.n);
         return this.numToChar(Number(decryptedNum));
     }
+
     encrypt(message) {
         const encryptedMessage = message.split('').map(char => {
             const encryptedChar = this.encryptChar(char);
@@ -41,6 +47,7 @@ class RSA {
         }).join(' ');
         return encryptedMessage;
     }
+
     decrypt(encryptedMessage) {
         const chunks = encryptedMessage.trim().split(/\s+/);
         const decryptedMessage = chunks.map(chunk => {
