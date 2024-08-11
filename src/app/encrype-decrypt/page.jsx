@@ -12,6 +12,7 @@ export default function HomePage() {
   const [showEncrypted, setShowEncrypted] = useState(true);
   const [p, setP] = useState(""); // State for p
   const [q, setQ] = useState(""); // State for q
+  const [e, setE] = useState(""); // State for e
   const router = useRouter();
 
   // Function to check if a number is prime
@@ -27,9 +28,11 @@ export default function HomePage() {
     return true;
   };
 
-  // Create RSA instance only if p and q are set and are prime
-  const rsaInstance = (p && q && isPrime(parseInt(p)) && isPrime(parseInt(q))) ? 
-    new RSA(parseInt(p), parseInt(q)) : null;
+  // Create RSA instance only if p, q, and e are set, p and q are prime, and e is valid
+  const rsaInstance =
+    p && q && e && isPrime(parseInt(p)) && isPrime(parseInt(q))
+      ? new RSA(parseInt(p), parseInt(q), BigInt(e))
+      : null;
 
   const handleEncrypt = () => {
     if (rsaInstance) {
@@ -37,7 +40,9 @@ export default function HomePage() {
       setEncrypted(rsaInstance.encrypt(message));
       setShowEncrypted(true);
     } else {
-      alert("Please enter valid prime values for p and q.");
+      alert(
+        "Please enter valid prime values for p, q, and a valid value for e."
+      );
     }
   };
 
@@ -47,7 +52,9 @@ export default function HomePage() {
       setDecrypted(rsaInstance.decrypt(encrypted));
       setShowEncrypted(false);
     } else {
-      alert("Please enter valid prime values for p and q.");
+      alert(
+        "Please enter valid prime values for p, q, and a valid value for e."
+      );
     }
   };
 
@@ -63,11 +70,14 @@ export default function HomePage() {
   return (
     <div className="banner-rsa min-h-screen flex flex-col items-center pt-4 px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="w-full flex justify-start mb-4">
-        <button onClick={() => router.back()} className="p-3 rounded-lg bg-violet-600 text-white">
+        <button
+          onClick={() => router.back()}
+          className="p-3 rounded-lg bg-violet-600 text-white"
+        >
           Back
         </button>
       </div>
-      <div className="w-full max-w-md mx-auto flex flex-col items-center p-6 sm:p-8 md:p-10 lg:p-12 border border shadow-md rounded-lg">
+      <div className="w-full max-w-md mx-auto flex flex-col items-center p-6 sm:p-8 md:p-10 lg:p-12 border shadow-md rounded-lg">
         <input
           type="text"
           value={message}
@@ -75,21 +85,33 @@ export default function HomePage() {
           placeholder="Your Message"
           className="p-4 rounded-lg text-black placeholder-black w-full"
         />
-        <div className="flex flex-col gap-3 sm:flex-row mt-4 w-full">
-          <input
-            type="number"
-            value={p}
-            onChange={(e) => setP(e.target.value)}
-            placeholder="Enter value for p"
-            className="p-4 rounded-lg text-black placeholder-black w-full"
-          />
-          <input
-            type="number"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Enter value for q"
-            className="p-4 rounded-lg text-black placeholder-black w-full"
-          />
+        <div className="flex sm:flex-row mt-4 w-full">
+          <div className="w-full">
+          <h1 className="text-white">Enter value of p below</h1>
+            <input
+              type="text"
+              value={p}
+              onChange={(e) => setP(e.target.value)}
+              placeholder="Enter value for p"
+              className="p-4 rounded-lg text-black placeholder-black w-full mb-4"
+            />
+            <h1 className="text-white">Enter value of q below</h1>
+            <input
+              type="text"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Enter value for q"
+              className="p-4 rounded-lg text-black placeholder-black w-full mb-4"
+            />
+            <h1 className="text-white">Enter value of e below</h1>
+            <input
+              type="text"
+              value={e}
+              onChange={(e) => setE(e.target.value)}
+              placeholder="Enter value for e"
+              className="p-4 rounded-lg text-black placeholder-black w-full"
+            />
+          </div>
         </div>
         <div className="flex justify-between gap-3 sm:flex-row mt-4 w-full">
           <button
@@ -127,7 +149,8 @@ export default function HomePage() {
               <p>p: {p || "No value for p"}</p>
               <p>q: {q || "No value for q"}</p>
               <p>
-                Public Key (e, n): ({rsaInstance.e.toString()}, {rsaInstance.n.toString()})
+                Public Key (e, n): ({rsaInstance.e.toString()},{" "}
+                {rsaInstance.n.toString()})
               </p>
             </div>
           )}

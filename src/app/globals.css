@@ -28,7 +28,7 @@
 /* RSA */
 .banner-rsa{
     background-color: #343f56;
-    height: 100vh;
+    height: auto;
 }
 
 /* message */
