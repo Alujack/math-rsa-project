@@ -24,6 +24,7 @@ class RSA {
     }
 
     charToNum(char) {
+      
         return char.charCodeAt(0) -64;
     }
 
