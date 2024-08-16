@@ -33,7 +33,6 @@ export default function HomePage() {
     p && q && e && isPrime(parseInt(p)) && isPrime(parseInt(q))
       ? new RSA(parseInt(p), parseInt(q), BigInt(e))
       : null;
-
   const handleEncrypt = () => {
     if (rsaInstance) {
       playSound();
