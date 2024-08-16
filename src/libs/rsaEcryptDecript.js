@@ -5,6 +5,8 @@ class RSA {
         this.n = this.p * this.q;
         this.phi = (this.p - 1n) * (this.q - 1n);
         this.e = BigInt(e);
+
+        // Check if modular inverse exists, if not throw an error
         this.d = this.modInverse(this.e, this.phi);
     }
 
@@ -16,16 +18,18 @@ class RSA {
         }
         if (b === 1n) {
             return (a + phi) % phi;
+
         }
         throw new Error('No modular inverse found');
     }
 
     charToNum(char) {
-        return char.charCodeAt(0)-64;
+      
+        return char.charCodeAt(0) -64;
     }
 
     numToChar(num) {
-        return String.fromCharCode(num+64);
+        return String.fromCharCode(num + 64);
     }
 
     encryptChar(char) {
@@ -70,4 +74,5 @@ class RSA {
         return result;
     }
 }
+
 export default RSA;

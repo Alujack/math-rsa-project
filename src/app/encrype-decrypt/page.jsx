@@ -28,32 +28,38 @@ export default function HomePage() {
     return true;
   };
 
-  // Create RSA instance only if p, q, and e are set, p and q are prime, and e is valid
-  const rsaInstance =
-    p && q && e && isPrime(parseInt(p)) && isPrime(parseInt(q))
-      ? new RSA(parseInt(p), parseInt(q), BigInt(e))
-      : null;
+  const createRsaInstance = () => {
+    if (!p || !q || !e) {
+      alert("Please enter values for p, q, and e.");
+      return null;
+    }
+    if (!isPrime(parseInt(p)) || !isPrime(parseInt(q))) {
+      alert("p and q must be prime numbers.");
+      return null;
+    }
+    try {
+      return new RSA(parseInt(p), parseInt(q), BigInt(e));
+    } catch (error) {
+      alert("Invalid value for e: No modular inverse found.");
+      return null;
+    }
+  };
+  
   const handleEncrypt = () => {
+    const rsaInstance = createRsaInstance();
     if (rsaInstance) {
       playSound();
       setEncrypted(rsaInstance.encrypt(message));
       setShowEncrypted(true);
-    } else {
-      alert(
-        "Please enter valid prime values for p, q, and a valid value for e."
-      );
     }
   };
 
   const handleDecrypt = () => {
+    const rsaInstance = createRsaInstance();
     if (rsaInstance) {
       playSound();
       setDecrypted(rsaInstance.decrypt(encrypted));
       setShowEncrypted(false);
-    } else {
-      alert(
-        "Please enter valid prime values for p, q, and a valid value for e."
-      );
     }
   };
 
@@ -86,7 +92,7 @@ export default function HomePage() {
         />
         <div className="flex sm:flex-row mt-4 w-full">
           <div className="w-full">
-          <h1 className="text-white">Enter value of p below</h1>
+            <h1 className="text-white">Enter value of p below</h1>
             <input
               type="text"
               value={p}
@@ -143,14 +149,16 @@ export default function HomePage() {
           <button onClick={toggleDetails} className="text-blue-500 mt-4">
             {showDetails ? "Hide Details" : "View Details"}
           </button>
-          {showDetails && rsaInstance && (
+          {showDetails && (
             <div className="mt-4 text-gray-500">
               <p>p: {p || "No value for p"}</p>
               <p>q: {q || "No value for q"}</p>
-              <p>
-                Public Key (e, n): ({rsaInstance.e.toString()},{" "}
-                {rsaInstance.n.toString()})
-              </p>
+              {rsaInstance && (
+                <p>
+                  Public Key (e, n): ({rsaInstance.e.toString()},{" "}
+                  {rsaInstance.n.toString()})
+                </p>
+              )}
             </div>
           )}
         </div>
