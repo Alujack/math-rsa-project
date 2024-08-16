@@ -21,11 +21,11 @@ class RSA {
     }
 
     charToNum(char) {
-        return char.charCodeAt(0) - 97;
+        return char.charCodeAt(0)-64;
     }
 
     numToChar(num) {
-        return String.fromCharCode(num + 97);
+        return String.fromCharCode(num+64);
     }
 
     encryptChar(char) {
