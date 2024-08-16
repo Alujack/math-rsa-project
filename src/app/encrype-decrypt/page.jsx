@@ -13,6 +13,7 @@ export default function HomePage() {
   const [p, setP] = useState(""); // State for p
   const [q, setQ] = useState(""); // State for q
   const [e, setE] = useState(""); // State for e
+  const [rsaInstance, setRsaInstance] = useState(null); // State for RSA instance
   const router = useRouter();
 
   // Function to check if a number is prime
@@ -38,7 +39,9 @@ export default function HomePage() {
       return null;
     }
     try {
-      return new RSA(parseInt(p), parseInt(q), BigInt(e));
+      const instance = new RSA(parseInt(p), parseInt(q), BigInt(e));
+      setRsaInstance(instance); // Store the instance in state
+      return instance;
     } catch (error) {
       alert("Invalid value for e: No modular inverse found.");
       return null;
@@ -149,16 +152,14 @@ export default function HomePage() {
           <button onClick={toggleDetails} className="text-blue-500 mt-4">
             {showDetails ? "Hide Details" : "View Details"}
           </button>
-          {showDetails && (
+          {showDetails && rsaInstance && (
             <div className="mt-4 text-gray-500">
               <p>p: {p || "No value for p"}</p>
               <p>q: {q || "No value for q"}</p>
-              {rsaInstance && (
-                <p>
-                  Public Key (e, n): ({rsaInstance.e.toString()},{" "}
-                  {rsaInstance.n.toString()})
-                </p>
-              )}
+              <p>
+                Public Key (e, n): ({rsaInstance.e.toString()},{" "}
+                {rsaInstance.n.toString()})
+              </p>
             </div>
           )}
         </div>
