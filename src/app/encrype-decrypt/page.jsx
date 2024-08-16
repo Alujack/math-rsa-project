@@ -47,7 +47,7 @@ export default function HomePage() {
       return null;
     }
   };
-
+  
   const handleEncrypt = () => {
     const rsaInstance = createRsaInstance();
     if (rsaInstance) {
